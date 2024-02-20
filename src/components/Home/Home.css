@@ -19,6 +19,7 @@
     background-color: var(--color-white);
     transition: all 0.3s;
     margin-right: 2vh;
+    cursor: pointer;
 }
 
 .div_import:hover{
