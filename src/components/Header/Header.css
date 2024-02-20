@@ -1,0 +1,53 @@
+header {
+    background-color: var(--color-princ);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15vh;
+}
+  
+.logo {
+    max-width: 90vw;
+    max-height: 90%;
+}
+  
+.radio_IA {
+    position: absolute;
+    right: 0;
+    margin-right: 3vmax;
+}
+  
+.radio_IA .radio-label {
+    margin-left: 1vmax;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 3vmax;
+    background-color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+  
+.radio_IA .radio-label.transparent {
+    opacity: 0.5;
+}
+  
+.radio_IA input[type="radio"] {
+    display: none;
+}
+
+
+
+@media (max-width: 600px) {
+    header{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .radio_IA{
+        position: relative;
+        margin-bottom: 10px;
+    }
+}
