@@ -104,7 +104,7 @@ function Home() {
     <div className='container_home'>
       <div className='container_imported_image'>
         {capturedPhotoURL && <img src={capturedPhotoURL} className="img_importation" alt="Photo prise" />}
-        {!cameraActive && !capturedPhotoURL && <p>No active images or cameras</p>}
+        {!cameraActive && !capturedPhotoURL && <p>Aucune image ou caméra active</p>}
         <video ref={videoRef} className='video' style={{ display: cameraActive ? 'block' : 'none' }}></video>
       </div>
       <div className='container_import_valid'>
@@ -113,7 +113,7 @@ function Home() {
           <input id="fileInput" type="file" accept="image/*" onChange={changeImage} style={{ display: 'none' }} />
         </div>
         <button className={`button_validate ${capturedPhotoURL ? 'validated' : ''}`} onClick={submitImage} disabled={!capturedPhotoURL}>
-          send image
+          Analyser
         </button>
 
         <button className={`button_capture ${cameraActive ? 'active' : ''}`} onClick={captureImage}>
