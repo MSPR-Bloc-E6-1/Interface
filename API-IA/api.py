@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
@@ -6,6 +7,7 @@ import tempfile
 import os
 
 app = Flask(__name__)
+CORS(app)  # Activer CORS pour toutes les routes de l'application
 
 MODEL_PATH = './model.h5'
 model = load_model(MODEL_PATH)
@@ -39,7 +41,7 @@ def predict():
     # Supprimer le fichier temporaire
     os.remove(file_path)  # Maintenant, cela devrait fonctionner sans erreur
     
-    return jsonify({predicted_class})
+    return predicted_class
 
 
 if __name__ == '__main__':
