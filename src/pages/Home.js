@@ -4,6 +4,7 @@ import logo from '../image/import.png';
 import cameraImg from '../image/img_camera.webp';
 import photoImg from '../image/photo.png';
 import switchCameraImg from '../image/switch.png';
+import axios from 'axios';
 
 function Home() {
   // Déclaration des états
@@ -45,10 +46,41 @@ function Home() {
   };
   
 
+
   const submitImage = () => {
-    // image send
-    console.log("Image validated "+ capturedPhotoURL);
-  };
+    if (capturedPhotoURL) {
+      fetch(capturedPhotoURL)
+        .then(res => res.blob())
+        .then(blob => {
+          const formData = new FormData();
+          formData.append('file', blob);
+  
+          axios.post('http://localhost:5000/predict', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+          .then(response => {
+            // Stocker la réponse dans le stockage local
+            localStorage.setItem('prediction', response.data);
+  
+            // Rediriger vers la page Chargement
+            window.location.href = '/analyse';
+          })
+          .catch(error => {
+            console.error('Error predicting:', error);
+          });
+        })
+        .catch(error => {
+          console.error('Error converting image to blob:', error);
+        });
+    } else {
+      console.error('No image captured.');
+    }
+};
+
+  
+
 
   const captureImage = () => {
     // Capture de la photo
@@ -79,14 +111,13 @@ function Home() {
   };
 
   const takePhoto = () => {
-    // prise de la photo
     const video = videoRef.current;
     const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     const ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const imageUrl = canvas.toDataURL('image/png');
+    const imageUrl = canvas.toDataURL('image/jpeg');
     setCapturedPhotoURL(imageUrl);
     video.srcObject.getTracks().forEach(track => track.stop()); 
     setCameraActive(false); 
@@ -115,6 +146,7 @@ function Home() {
         <button className={`button_validate ${capturedPhotoURL ? 'validated' : ''}`} onClick={submitImage} disabled={!capturedPhotoURL}>
           Analyser
         </button>
+
 
         <button className={`button_capture ${cameraActive ? 'active' : ''}`} onClick={captureImage}>
           <img src={cameraImg} alt="Capture" />

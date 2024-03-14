@@ -1,4 +1,3 @@
-// Explication.js
 import React, { useEffect, useState } from 'react';
 import '../components/Explication/Explication.css';
 import { useParams } from 'react-router-dom';
@@ -21,24 +20,24 @@ function Explication() {
         const storedTailleAnimal = localStorage.getItem('TailleAnimal');
         const storedHabitatAnimal = localStorage.getItem('HabitatAnimal');
 
-        if (storedNameAnimal || storedDescripAnimal || storedFamilleAnimal || storedTailleAnimal || storedHabitatAnimal ) {
+        if (storedNameAnimal || storedDescripAnimal || storedFamilleAnimal || storedTailleAnimal || storedHabitatAnimal) {
             setNameAnimal(storedNameAnimal);
             setDescripAnimal(storedDescripAnimal);
             setFamilleAnimal(storedFamilleAnimal);
             setTailleAnimal(storedTailleAnimal);
             setHabitatAnimal(storedHabitatAnimal);
-
-            console.log(NameAnimal)
-
-            // Effacer les données du stockage local après les avoir récupérées
-            localStorage.removeItem('NameAnimal');
-            localStorage.removeItem('DescripAnimal');
-            localStorage.removeItem('FamilleAnimal');
-            localStorage.removeItem('TailleAnimal');
-            localStorage.removeItem('HabitatAnimal');
         }
-      }, []);
-    
+    }, []);
+
+    // Enregistrement des données dans le stockage local
+    useEffect(() => {
+        localStorage.setItem('NameAnimal', NameAnimal);
+        localStorage.setItem('DescripAnimal', DescripAnimal);
+        localStorage.setItem('FamilleAnimal', FamilleAnimal);
+        localStorage.setItem('TailleAnimal', TailleAnimal);
+        localStorage.setItem('HabitatAnimal', HabitatAnimal);
+    }, [NameAnimal, DescripAnimal, FamilleAnimal, TailleAnimal, HabitatAnimal]);
+
     return (
         <div className='container_explication'>
             <div className='block_explication'>
