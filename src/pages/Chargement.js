@@ -20,12 +20,14 @@ function Chargement() {
             const nomAnimal = response.data[0].nom.toLowerCase().replace('-', '');
             const NameAnimal = response.data[0].nom;
             const DescripAnimal = response.data[0].description;
+            const ImageAnimal = response.data[0].imageAnimal;
             const FamilleAnimal = response.data[0].famille;
             const TailleAnimal = response.data[0].taille;
             const HabitatAnimal = response.data[0].habitat;
 
             localStorage.setItem('NameAnimal', NameAnimal);
             localStorage.setItem('DescripAnimal', DescripAnimal);
+            localStorage.setItem('ImageAnimal', ImageAnimal);
             localStorage.setItem('FamilleAnimal', FamilleAnimal);
             localStorage.setItem('TailleAnimal', TailleAnimal);
             localStorage.setItem('HabitatAnimal', HabitatAnimal);

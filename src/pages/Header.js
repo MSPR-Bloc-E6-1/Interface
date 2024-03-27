@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../components/Header/Header.css';
+import { NavLink } from 'react-router-dom';
 import img_logo from '../image/logo.png';
 
 const Header = () => {
@@ -11,8 +12,9 @@ const Header = () => {
 
   return (
     <header>
-      <img src={img_logo} className="logo" alt="Wildlens Logo" />
-      <div className='radio_IA'>
+      <NavLink to="/" className="nav-link">
+        <img src={img_logo} className="logo" alt="Wildlens Logo" />
+      </NavLink>      <div className='radio_IA'>
         <label className={`radio-label ${selectedOption !== 'WildlensIA' && 'transparent'}`}>
           <input 
             type="radio" 
