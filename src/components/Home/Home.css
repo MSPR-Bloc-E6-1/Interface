@@ -19,6 +19,7 @@
     background-color: var(--color-white);
     transition: all 0.3s;
     margin-right: 2vh;
+    cursor: pointer;
 }
 
 .div_import:hover{
@@ -28,8 +29,8 @@
 .container_imported_image {
     background-color: var(--color-gray);
     border: 0.3vmax solid var(--color-second);
-    width: 25%;
-    height: 100%;
+    width: 75%;
+    height: 80%;
     border-radius: 100px;
     display: flex;
     justify-content: center;
@@ -126,23 +127,29 @@
 
 
 
-
+@media (min-width: 600px) {
+    .container_imported_image{
+        width: 25%;
+        height: 100%;
+        border-radius: 50px;
+    }
+}
 
 @media (max-width: 600px) {
     .container_home {
         justify-content: center;
     }
     .div_import{
-        width: 10vmax;
-        height: 10vmax;
-        border: 0.7vmax solid var(--color-second);
+        width: 5vmax;
+        height: 5vmax;
+        border: 0.3vmax solid var(--color-second);
+        padding: 0.5vmax 0.5vmax;
     }
     .button_validate{
-        border: 0.7vmax solid var(--color-second);
+        border: 0.3vmax solid var(--color-second);
+        padding: 1.5vmax 1.5vmax;
     }
     .container_imported_image{
-        width: 75%;
-        height: 80%;
         border-radius: 50px;
     }
 }

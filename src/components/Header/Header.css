@@ -49,6 +49,10 @@ header {
 
 
 @media (max-width: 600px) {
+    .logo {
+        max-width: 70vw;
+        max-height: 90%;
+    }
     header{
         display: flex;
         flex-direction: column;

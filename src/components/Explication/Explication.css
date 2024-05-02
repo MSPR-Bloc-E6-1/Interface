@@ -5,10 +5,11 @@
     align-items: center;
     justify-content: flex-end;
     flex-direction: column;
-    height: 80vh;
+    height: 100%;
     padding: 1vmax;
     margin-bottom: 100px;
     background-color: var(--color-white);
+    color: var(--color-second);
 }
 
 .block_explication{
@@ -16,6 +17,8 @@
     border: 0.3vmax solid var(--color-second);
     width: 90%;
     height: 100%;
+    padding-top: 5vmax;
+    padding-bottom: 5vmax;
     border-radius: 100px;
     display: flex;
     justify-content: center;
@@ -55,3 +58,20 @@
 .tite_texte_animal p{
     margin: 0% 0%;
 }
+
+
+@media (max-width: 600px) {
+    .block_explication{
+        border-radius: 30px;
+
+    }
+    .head_image_titre_animal{
+        flex-direction: column;
+        margin: 0% 0%;
+    }
+    .tite_texte_animal p{
+        margin-right: 5vmax;
+    }
+}
+
+

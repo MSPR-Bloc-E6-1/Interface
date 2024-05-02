@@ -61,11 +61,15 @@ function Home() {
             },
           })
           .then(response => {
-            // Stocker la réponse dans le stockage local
-            localStorage.setItem('prediction', response.data);
-  
-            // Rediriger vers la page Chargement
-            window.location.href = '/analyse';
+            if(response.data === "background"){
+              window.location.href = '/';
+            }else{
+              // Stocker la réponse dans le stockage local
+              localStorage.setItem('prediction', response.data);
+    
+              // Rediriger vers la page Chargement
+              window.location.href = '/analyse';
+            }
           })
           .catch(error => {
             console.error('Error predicting:', error);
@@ -117,6 +121,7 @@ function Home() {
     canvas.height = video.videoHeight;
     const ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    // mettre l'image en jpeg
     const imageUrl = canvas.toDataURL('image/jpeg');
     setCapturedPhotoURL(imageUrl);
     video.srcObject.getTracks().forEach(track => track.stop()); 
@@ -138,6 +143,7 @@ function Home() {
         {!cameraActive && !capturedPhotoURL && <p>Aucune image ou caméra active</p>}
         <video ref={videoRef} className='video' style={{ display: cameraActive ? 'block' : 'none' }}></video>
       </div>
+      
       <div className='container_import_valid'>
         <div className='div_import'>
           <img src={logo} alt="Logo" className='img_importation_logo' onClick={() => document.getElementById('fileInput').click()} />
@@ -147,14 +153,13 @@ function Home() {
           Analyser
         </button>
 
-
         <button className={`button_capture ${cameraActive ? 'active' : ''}`} onClick={captureImage}>
           <img src={cameraImg} alt="Capture" />
         </button>
         {cameraActive && !capturedPhotoURL && <button className="button_take_photo" onClick={takePhoto}>
           <img src={photoImg} alt="Prendre une photo" />
         </button>}
-        {devices.length > 1 && <button className="button_change_camera" onClick={changeCamera}>
+        {devices.length >= 1 && <button className="button_change_camera" onClick={changeCamera}>
           <img src={switchCameraImg} alt="Changer de caméra" />
         </button>}
       </div>
