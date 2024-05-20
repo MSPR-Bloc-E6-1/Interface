@@ -6,6 +6,7 @@ function Chargement() {
     const [Prediction, setPrediction] = useState('');
     useEffect(() => {
         const storedPrediction = localStorage.getItem('prediction');
+        console.log(storedPrediction)
         if (storedPrediction) {
             setPrediction(storedPrediction);
             localStorage.removeItem('prediction');

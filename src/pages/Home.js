@@ -61,12 +61,12 @@ function Home() {
             },
           })
           .then(response => {
-            if(response.data === "background"){
+            if(response.data['predicted_class'] === "background"){
               window.location.href = '/';
             }else{
               // Stocker la réponse dans le stockage local
-              localStorage.setItem('prediction', response.data);
-    
+              localStorage.setItem('prediction', response.data['predicted_class']);
+  
               // Rediriger vers la page Chargement
               window.location.href = '/analyse';
             }
