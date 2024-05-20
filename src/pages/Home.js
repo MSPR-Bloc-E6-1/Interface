@@ -5,17 +5,16 @@ import cameraImg from '../image/img_camera.webp';
 import photoImg from '../image/photo.png';
 import switchCameraImg from '../image/switch.png';
 import axios from 'axios';
+import animalPrint from '../image/animal_print.png'; // Importez votre image d'empreinte d'animal
 
 function Home() {
-  // Déclaration des états
-  const [cameraActive, setCameraActive] = useState(false); // Activation de la caméra
-  const [devices, setDevices] = useState([]); // Appareils disponibles
-  const videoRef = useRef(); // ref de la caméra
-  const [selectedDeviceId, setSelectedDeviceId] = useState(null); // id de l'appareil selectionné
-  const [capturedPhotoURL, setCapturedPhotoURL] = useState(null); // URL de la photo capturée
+  const [cameraActive, setCameraActive] = useState(false);
+  const [devices, setDevices] = useState([]);
+  const videoRef = useRef();
+  const [selectedDeviceId, setSelectedDeviceId] = useState(null);
+  const [capturedPhotoURL, setCapturedPhotoURL] = useState(null);
 
   useEffect(() => {
-    // prend la liste des appareils disponibles
     navigator.mediaDevices.enumerateDevices()
       .then(devices => {
         const videoDevices = devices.filter(device => device.kind === 'videoinput');
@@ -28,6 +27,7 @@ function Home() {
         console.error('Error enumerating devices:', error);
       });
   }, []);
+
 
   const changeImage = (e) => {
     // changement d'image
@@ -142,8 +142,11 @@ function Home() {
         {capturedPhotoURL && <img src={capturedPhotoURL} className="img_importation" alt="Photo prise" />}
         {!cameraActive && !capturedPhotoURL && <p>Aucune image ou caméra active</p>}
         <video ref={videoRef} className='video' style={{ display: cameraActive ? 'block' : 'none' }}></video>
+        {cameraActive && (
+          <img src={animalPrint} alt="Empreinte d'animal" className="animal_print" />
+        )}
       </div>
-      
+
       <div className='container_import_valid'>
         <div className='div_import'>
           <img src={logo} alt="Logo" className='img_importation_logo' onClick={() => document.getElementById('fileInput').click()} />

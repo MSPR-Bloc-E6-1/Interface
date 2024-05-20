@@ -36,6 +36,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: relative;
 }
 
 .img_importation {
@@ -124,6 +125,20 @@
   height: 30px;
 }
 
+
+.animal_print {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.5;
+  margin: 3vmin;
+  width: auto;
+  height: auto;
+  max-width: 80%;
+  max-height: 80%;
+}
 
 
 
